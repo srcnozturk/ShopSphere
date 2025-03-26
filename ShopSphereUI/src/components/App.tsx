@@ -4,6 +4,7 @@ import Header from "./Header";
 import ProductList from "./ProductList";
 import { v4 as uuidv4 } from 'uuid';
 import ButtonUsage from "./ButtonUsage";
+import { Container, CssBaseline } from "@mui/material";
 
 function App() {
 
@@ -30,9 +31,14 @@ function addProduct(){
 
   return (
     <>
+    <CssBaseline /> {/* Bu bir JSX yorumudur */}
    <Header products={products}/>
+   <Container>
    <ProductList products={products} addProduct={addProduct}/>
    <ButtonUsage />
+
+   </Container>
+  
     </>
  
   )
