@@ -19,7 +19,7 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
                 Description = "Iphone 16 Description",
                 Price = 70000,
                 isActive = true,
-                ImageUrl = "https://via.placeholder.com/150",
+                ImageUrl = "1.png",
                 Stock = 10
             },
             new ProductModel
@@ -29,7 +29,7 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
                 Description = "Iphone 15 Description",
                 Price = 60000,
                 isActive = true,
-                ImageUrl = "https://via.placeholder.com/150",
+                ImageUrl = "2.jpg",
                 Stock = 20
             },
             new ProductModel
@@ -39,7 +39,7 @@ public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
                 Description = "Iphone 14 Description",
                 Price = 50000,
                 isActive = true,
-                ImageUrl = "https://via.placeholder.com/150",
+                ImageUrl = "3.png",
                 Stock = 30
             }
         );

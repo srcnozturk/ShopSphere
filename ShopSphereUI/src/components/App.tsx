@@ -35,7 +35,6 @@ function addProduct(){
    <Header products={products}/>
    <Container>
    <ProductList products={products} addProduct={addProduct}/>
-   <ButtonUsage />
 
    </Container>
   
