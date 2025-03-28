@@ -1,5 +1,5 @@
 import { ShoppingCart } from "@mui/icons-material";
-import { AppBar, Badge, Box, Button, Container, IconButton, List, ListItem, Stack, Toolbar, Typography } from "@mui/material"
+import { AppBar, Badge, Box, Button,  IconButton,  Stack, Toolbar, Typography } from "@mui/material"
 import { NavLink } from "react-router";
 
 const links = [
@@ -28,7 +28,7 @@ export default function Header(props:any) {
               <Typography variant="h6">ShopSphere</Typography>
             <Stack direction="row">
               { links.map(link => 
-              <Button component={NavLink} sx={navStyles} to={link.to}>{link.title}</Button>  
+              <Button key={link.to} component={NavLink} sx={navStyles} to={link.to}>{link.title}</Button>  
            ) }
            </Stack>
            </Box>
