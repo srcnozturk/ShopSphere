@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShopSphere.API.Data;
+using ShopSphere.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,7 +17,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
-
+app.UseMiddleware<ExceptionHandling>();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
