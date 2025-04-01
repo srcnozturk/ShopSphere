@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosResponse } from "axios";
 import { toast } from "react-toastify";
+import { router } from "../router/Routes";
 
 axios.defaults.baseURL = "https://localhost:7150/api/";
 
@@ -12,7 +13,7 @@ axios.interceptors.response.use(response =>{
             case 400:toast.error(data.title || "Bad Request"); break;
             case 401:toast.error(data.title || "Unauthorized"); break;
             case 404:toast.error(data.title || "Not Found"); break;
-            case 500:toast.error(data.title || "Internal Server Error"); break;
+            case 500:router.navigate("/server-error",{state:{ error:data,status:status}}); break;
         }
         return Promise.reject(error.response);
     })
