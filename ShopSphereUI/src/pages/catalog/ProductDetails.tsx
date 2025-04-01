@@ -32,15 +32,15 @@ export default function ProductDetailsPage() {
         <Table>
             <TableBody>
                 <TableRow>
-                    <TableCell>Name</TableCell>
+                    <TableCell>Ürün Adı</TableCell>
                     <TableCell>{product.name}</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>Description</TableCell>
+                    <TableCell>Açıklama</TableCell>
                     <TableCell>{product.description}</TableCell>
                 </TableRow>
                 <TableRow>
-                    <TableCell>Stock</TableCell>
+                    <TableCell>Stok Miktarı</TableCell>
                     <TableCell>{product.stock}</TableCell>
                 </TableRow>
             </TableBody>

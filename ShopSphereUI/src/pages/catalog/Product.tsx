@@ -17,8 +17,8 @@ export default function Product({product}: Props) {
           <Typography variant="body2" color="text.secondary">{(product.price/100).toFixed(2)} ₺</Typography>
         </CardContent>
         <CardActions >
-          <Button variant="outlined" size="small" startIcon={<AddShoppingCart />} color="success">Add to Cart</Button>
-          <Button component={Link} to={`/catalog/${product.id}`}  variant="outlined" size="small" startIcon={<SearchIcon />}>View</Button>
+          <Button variant="outlined" size="small" startIcon={<AddShoppingCart />} color="success">Sepete Ekle</Button>
+          <Button component={Link} to={`/catalog/${product.id}`}  variant="outlined" size="small" startIcon={<SearchIcon />}>Detay</Button>
         </CardActions>
       </Card>      
     );
