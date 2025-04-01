@@ -12,7 +12,7 @@ axios.interceptors.response.use(response =>{
         switch (status) {
             case 400:toast.error(data.title || "Bad Request"); break;
             case 401:toast.error(data.title || "Unauthorized"); break;
-            case 404:toast.error(data.title || "Not Found"); break;
+            case 404:router.navigate("/not-found"); break;
             case 500:router.navigate("/server-error",{state:{ error:data,status:status}}); break;
         }
         return Promise.reject(error.response);
