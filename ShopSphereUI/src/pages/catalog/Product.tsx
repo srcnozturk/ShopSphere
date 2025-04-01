@@ -18,7 +18,7 @@ export default function Product({product}: Props) {
         </CardContent>
         <CardActions >
           <Button variant="outlined" size="small" startIcon={<AddShoppingCart />} color="success">Add to Cart</Button>
-          <Button component={Link} to={`/catalog/${product.id}`} variant="outlined" size="small" startIcon={<SearchIcon />}>View</Button>
+          <Button component={Link} to={`/catalog/${product.id}`}  variant="outlined" size="small" startIcon={<SearchIcon />}>View</Button>
         </CardActions>
       </Card>      
     );
