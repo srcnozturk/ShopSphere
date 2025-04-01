@@ -13,7 +13,7 @@ Modern ve etkileyici bir ana sayfa tasarımı ile kullanıcıları karşılıyor
 Ekibimizi ve vizyonumuzu modern bir tasarımla tanıtıyoruz. Hover efektleri ve yumuşak animasyonlar ile kullanıcı deneyimini zenginleştiriyoruz.
 
 ### İletişim
-![İletişim](./ShopSphereUI/public/images/iletisim.png)
+![İletişim](./ShopSphereUI/public/images/iletişim.png)
 Kullanıcı dostu iletişim formu ve modern tasarım ile müşterilerimize kolay erişim imkanı sağlıyoruz.
 
 ## 🛠️ Kullanılan Teknolojiler
