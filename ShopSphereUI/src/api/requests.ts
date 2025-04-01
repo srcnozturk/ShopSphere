@@ -10,7 +10,17 @@ axios.interceptors.response.use(response =>{
     (error:AxiosError) => {
         const {data,status} = error.response as AxiosResponse;
         switch (status) {
-            case 400:toast.error(data.title || "Bad Request"); break;
+            case 400:
+                if(data.errors){
+                const modelErrors : string[] = [];
+
+                for(const key in data.errors){
+                        modelErrors.push(data.errors[key]);
+                    }
+                    throw modelErrors;
+            }
+            toast.error(data.title);
+            break; 
             case 401:toast.error(data.title || "Unauthorized"); break;
             case 404:router.navigate("/not-found"); break;
             case 500:router.navigate("/server-error",{state:{ error:data,status:status}}); break;
