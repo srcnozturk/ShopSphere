@@ -107,4 +107,58 @@ This project is licensed under the MIT License - see the `LICENSE.txt` file for 
 
 - Material-UI for the amazing component library
 - React.js community for continuous support
-- All contributors who have helped with the project 
+- All contributors who have helped with the project
+
+## 🐳 Docker Deployment
+
+### Prerequisites
+- Docker
+- Docker Compose
+
+### Running with Docker Compose
+
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/ShopSphere.git
+cd ShopSphere
+```
+
+2. Start the application:
+```bash
+docker-compose up -d
+```
+
+The application will be available at:
+- Frontend: http://localhost:3000
+- Backend API: http://localhost:5000
+- Database: localhost:1433
+
+### Individual Container Builds
+
+Backend:
+```bash
+cd ShopSphere.API
+docker build -t shopsphere-api .
+docker run -p 5000:80 shopsphere-api
+```
+
+Frontend:
+```bash
+cd ShopSphereUI
+docker build -t shopsphere-web .
+docker run -p 3000:80 shopsphere-web
+```
+
+### Container Configuration
+
+The application uses three main containers:
+- Frontend (Node.js + Nginx)
+- Backend API (.NET Core)
+- Database (SQL Server)
+
+Each container is configured for production use with:
+- Optimized builds
+- Security best practices
+- Performance tuning
+- Volume persistence for database
+- Network isolation 
