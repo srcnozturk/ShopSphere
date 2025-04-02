@@ -5,7 +5,7 @@ ShopSphere is a modern e-commerce application developed using cutting-edge web t
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](./ShopSphereUI/public/images/home.png.png)
+![Home Page](./ShopSphereUI/public/images/home.png)
 Welcome users with a modern and impressive home page design. We offer a dynamic experience with gradient backgrounds and animated transitions.
 
 ### About Us
