@@ -6,6 +6,8 @@ namespace ShopSphere.API.Data;
 public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
 {
     public DbSet<ProductModel> Products => Set<ProductModel>();
+    public DbSet<CartModel> Carts => Set<CartModel>();
+    public DbSet<CartItemModel> CartItems => Set<CartItemModel>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
