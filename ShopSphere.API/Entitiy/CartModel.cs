@@ -5,6 +5,39 @@
         public Guid Id { get; set; }
         public string CustomerId { get; set; } = null!;
         public List<CartItemModel> CartItems { get; set; } = new();
+
+        public void AddItem(ProductModel product, int quantity)
+        {
+            var cartItem = CartItems.FirstOrDefault(x => x.ProductId == product.Id);
+            if (cartItem != null)
+            {
+                cartItem.Quantity += quantity;
+            }
+            else
+            {
+                CartItems.Add(new CartItemModel
+                {
+                    Product = product,
+                    Quantity = quantity
+                });
+            }
+        }
+
+        public void DeleteItem(Guid productId, int quantity)
+        {
+            var cartItem = CartItems.FirstOrDefault(x => x.ProductId == productId);
+            if (cartItem != null)
+            {
+                if (cartItem.Quantity > quantity)
+                {
+                    cartItem.Quantity -= quantity;
+                }
+                else
+                {
+                    CartItems.Remove(cartItem);
+                }
+            }
+        }
     }
 
     public class CartItemModel
