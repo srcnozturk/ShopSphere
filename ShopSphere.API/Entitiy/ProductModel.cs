@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace ShopSphere.API.Entitiy;
+﻿namespace ShopSphere.API.Entitiy;
 
 public class ProductModel
 {

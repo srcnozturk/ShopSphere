@@ -2,32 +2,31 @@
 using Microsoft.EntityFrameworkCore;
 using ShopSphere.API.Data;
 
-namespace ShopSphere.API.Controllers
+namespace ShopSphere.API.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class ProductsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ProductsController : ControllerBase
+    private readonly ApplicationDbContext _context;
+
+    public ProductsController(ApplicationDbContext context)
     {
-        private readonly ApplicationDbContext _context;
+        _context = context;
+    }
 
-        public ProductsController(ApplicationDbContext context)
-        {
-            _context = context;
-        }
+    [HttpGet]
+    public async Task<IActionResult> GetProducts()
+    {
+        var products=await _context.Products.ToListAsync();
+        return Ok(products);
+    }
+    [HttpGet("{id}")]
+    public async  Task<IActionResult> GetProduct(Guid id) {
 
-        [HttpGet]
-        public async Task<IActionResult> GetProducts()
-        {
-            var products=await _context.Products.ToListAsync();
-            return Ok(products);
-        }
-        [HttpGet("{id}")]
-        public async  Task<IActionResult> GetProduct(Guid id) {
-
-            if (id == default) return NotFound();
-            var product =await _context.Products.FindAsync(id);
-            if (product == default) return NotFound();
-            return Ok(product);
-        }
+        if (id == default) return NotFound();
+        var product =await _context.Products.FindAsync(id);
+        if (product == default) return NotFound();
+        return Ok(product);
     }
 }
