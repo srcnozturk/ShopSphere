@@ -47,9 +47,14 @@ const Catalog ={
     list:() => queries.get("products"),
     details:(id: string) => queries.get(`products/${id}`),
 }
+const Cart = {
+    get: queries.get("cart"),
+    addItem :(productId : string, quantity = 1) => queries.post(`cart?productId=${productId}&quantity=${quantity}`,{}),
+    removeItem: (productId: string, quantity = 1) => queries.delete(`cart?productId=${productId}&quantity=${quantity}`),
+}
 
 const requests ={
-    Catalog,Errors
+    Catalog,Errors,Cart
 }
 
 export default requests;
