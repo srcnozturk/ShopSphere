@@ -1,4 +1,6 @@
-﻿namespace ShopSphere.API.Entitiy;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ShopSphere.API.Entitiy;
 
 public class CartModel
 {
@@ -38,7 +40,7 @@ public class CartItemModel
     public Guid Id { get; set; }
     public Guid ProductId { get; set; }
     public ProductModel Product { get; set; } = null!;
-    public Guid CartId { get; set; }
+    //public Guid CartId { get; set; }
     //public CartModel Cart { get; set; } = null!;
     public int Quantity { get; set; }
 }

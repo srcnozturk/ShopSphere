@@ -13,15 +13,15 @@ interface Props{
 export default function Product({product}: Props) {
 
   const [loading, setLoading] = useState(false);
-  
-  function handleAddItem(productId: string)
+
+  function handleAddItem(productId: string) 
   {
     setLoading(true);
 
     requests.Cart.addItem(productId)
-    .then(cart => console.log(cart))
-    .catch(error => console.log(error))
-    .finally(() => setLoading(false));
+      .then(cart => console.log(cart))
+      .catch(error => console.log(error))
+      .finally(() => setLoading(false));
   }
 
     return (

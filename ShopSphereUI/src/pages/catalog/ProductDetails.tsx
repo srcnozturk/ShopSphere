@@ -24,7 +24,7 @@ export default function ProductDetailsPage() {
 
     return (
        <Grid2 container spacing={6}> 
-       <Grid2 size={{xl:3,lg:4,md:5,sm:6,xs:12}}><img src={`https://localhost:7150/images/${product.imageUrl}`} style={{width:"100%"}}/></Grid2>
+       <Grid2 size={{xl:3,lg:4,md:5,sm:6,xs:12}}><img src={`http://localhost:5097/images/${product.imageUrl}`} style={{width:"100%"}}/></Grid2>
        <Grid2 size={{xl:9,lg:8,md:7,sm:6,xs:12}}>
         <Typography variant="h3">{product.name}</Typography>
         <Divider sx={{mb:2}} />

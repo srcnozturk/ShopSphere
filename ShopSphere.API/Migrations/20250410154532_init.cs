@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace ShopSphere.API.Migrations
 {
     /// <inheritdoc />
-    public partial class AddCartTable : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -24,23 +26,39 @@ namespace ShopSphere.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Products",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    isActive = table.Column<bool>(type: "bit", nullable: false),
+                    ImageUrl = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Stock = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Products", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CartItems",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ProductId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CartId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Quantity = table.Column<int>(type: "int", nullable: false)
+                    Quantity = table.Column<int>(type: "int", nullable: false),
+                    CartModelId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_CartItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CartItems_Carts_CartId",
-                        column: x => x.CartId,
+                        name: "FK_CartItems_Carts_CartModelId",
+                        column: x => x.CartModelId,
                         principalTable: "Carts",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_CartItems_Products_ProductId",
                         column: x => x.ProductId,
@@ -49,31 +67,20 @@ namespace ShopSphere.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.UpdateData(
+            migrationBuilder.InsertData(
                 table: "Products",
-                keyColumn: "Id",
-                keyValue: new Guid("1557224f-acc0-4bf4-a496-0ba39fe2cf44"),
-                column: "ImageUrl",
-                value: "3.png");
-
-            migrationBuilder.UpdateData(
-                table: "Products",
-                keyColumn: "Id",
-                keyValue: new Guid("63e2f02c-c529-4ee5-9eff-7dfe31288098"),
-                column: "ImageUrl",
-                value: "1.png");
-
-            migrationBuilder.UpdateData(
-                table: "Products",
-                keyColumn: "Id",
-                keyValue: new Guid("a7053963-5521-4672-bc8d-73faff51686f"),
-                column: "ImageUrl",
-                value: "2.jpg");
+                columns: new[] { "Id", "Description", "ImageUrl", "Name", "Price", "Stock", "isActive" },
+                values: new object[,]
+                {
+                    { new Guid("1557224f-acc0-4bf4-a496-0ba39fe2cf44"), "Iphone 14 Description", "3.png", "Iphone 14", 50000m, 30, true },
+                    { new Guid("63e2f02c-c529-4ee5-9eff-7dfe31288098"), "Iphone 16 Description", "1.png", "Iphone 16", 70000m, 10, true },
+                    { new Guid("a7053963-5521-4672-bc8d-73faff51686f"), "Iphone 15 Description", "2.jpg", "Iphone 15", 60000m, 20, true }
+                });
 
             migrationBuilder.CreateIndex(
-                name: "IX_CartItems_CartId",
+                name: "IX_CartItems_CartModelId",
                 table: "CartItems",
-                column: "CartId");
+                column: "CartModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_CartItems_ProductId",
@@ -90,26 +97,8 @@ namespace ShopSphere.API.Migrations
             migrationBuilder.DropTable(
                 name: "Carts");
 
-            migrationBuilder.UpdateData(
-                table: "Products",
-                keyColumn: "Id",
-                keyValue: new Guid("1557224f-acc0-4bf4-a496-0ba39fe2cf44"),
-                column: "ImageUrl",
-                value: "https://via.placeholder.com/150");
-
-            migrationBuilder.UpdateData(
-                table: "Products",
-                keyColumn: "Id",
-                keyValue: new Guid("63e2f02c-c529-4ee5-9eff-7dfe31288098"),
-                column: "ImageUrl",
-                value: "https://via.placeholder.com/150");
-
-            migrationBuilder.UpdateData(
-                table: "Products",
-                keyColumn: "Id",
-                keyValue: new Guid("a7053963-5521-4672-bc8d-73faff51686f"),
-                column: "ImageUrl",
-                value: "https://via.placeholder.com/150");
+            migrationBuilder.DropTable(
+                name: "Products");
         }
     }
 }

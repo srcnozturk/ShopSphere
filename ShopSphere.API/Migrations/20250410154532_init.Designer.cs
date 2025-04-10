@@ -12,8 +12,8 @@ using ShopSphere.API.Data;
 namespace ShopSphere.API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250407114622_AddCartTable")]
-    partial class AddCartTable
+    [Migration("20250410154532_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,7 +31,7 @@ namespace ShopSphere.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CartId")
+                    b.Property<Guid?>("CartModelId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ProductId")
@@ -42,7 +42,7 @@ namespace ShopSphere.API.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CartId");
+                    b.HasIndex("CartModelId");
 
                     b.HasIndex("ProductId");
 
@@ -128,19 +128,15 @@ namespace ShopSphere.API.Migrations
 
             modelBuilder.Entity("ShopSphere.API.Entitiy.CartItemModel", b =>
                 {
-                    b.HasOne("ShopSphere.API.Entitiy.CartModel", "Cart")
+                    b.HasOne("ShopSphere.API.Entitiy.CartModel", null)
                         .WithMany("CartItems")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CartModelId");
 
                     b.HasOne("ShopSphere.API.Entitiy.ProductModel", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Cart");
 
                     b.Navigation("Product");
                 });

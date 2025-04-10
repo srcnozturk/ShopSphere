@@ -28,9 +28,6 @@ namespace ShopSphere.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CartId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid?>("CartModelId")
                         .HasColumnType("uniqueidentifier");
 
