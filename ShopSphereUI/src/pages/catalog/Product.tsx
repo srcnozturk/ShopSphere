@@ -26,7 +26,7 @@ export default function Product({product}: Props) {
 
     return (
       <Card>
-        <CardMedia sx={{height:160, backgroundSize:"contain"}} image={`https://localhost:7150/images/${product.imageUrl}`} />
+        <CardMedia sx={{height:160, backgroundSize:"contain"}} image={`http://localhost:5097/images/${product.imageUrl}`} />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2" color="text.secondary">{product.name}</Typography>
           <Typography variant="body2" color="text.secondary">{(product.price/100).toFixed(2)} ₺</Typography>
