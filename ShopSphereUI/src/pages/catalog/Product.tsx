@@ -7,6 +7,7 @@ import requests from "../../api/requests";
 import { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
 import { toast } from "react-toastify";
+import { currentTRY } from "../../utils/formatCurrency";
 
 interface Props{
     product: IProduct
@@ -23,7 +24,7 @@ export default function Product({product}: Props) {
 
     requests.Cart.addItem(productId)
       .then(cart =>{ setCart(cart);
-        toast.success("Sepetinize eklendi.");
+        toast.success("Sepetinize eklendi."); 
       })
       .catch(error => console.log(error))
       .finally(() => setLoading(false));
@@ -34,7 +35,7 @@ export default function Product({product}: Props) {
         <CardMedia sx={{height:160, backgroundSize:"contain"}} image={`http://localhost:5097/images/${product.imageUrl}`} />
         <CardContent>
           <Typography gutterBottom variant="h6" component="h2" color="text.secondary">{product.name}</Typography>
-          <Typography variant="body2" color="text.secondary">{(product.price/100).toFixed(2)} ₺</Typography>
+          <Typography variant="body2" color="text.secondary">{currentTRY.format(product.price)} ₺</Typography>
         </CardContent>
         <CardActions >
           <Button variant="outlined" size="small" startIcon={<AddShoppingCart />} color="success" onClick={()=> handleAddItem(product.id)}>Sepete Ekle</Button>
