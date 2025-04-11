@@ -5,6 +5,7 @@ import { AddCircleOutline, Delete, RemoveCircleOutline } from "@mui/icons-materi
 import { useCartContext } from "../../context/CartContext";
 import { useState } from "react";
 import requests from "../../api/requests";
+import { toast } from "react-toastify";
 
 export default function ShoppingCartPage() 
 {
@@ -68,7 +69,10 @@ function handleDeleteItem(productId: string,id:string, quantity: number = 1) {
                 <TableCell align="right">
                     <LoadingButton color="error" 
                    loading={status.loading && status.id === "del_all" + item.productId} 
-                    onClick={() => handleDeleteItem(item.productId,"del_all"+ item.productId, item.quantity)}>
+                    onClick={() => {
+                      handleDeleteItem(item.productId,"del_all"+ item.productId, item.quantity);
+                      toast.error("Ürün sepetinizden silindi.");
+                      }}>
                     <Delete/>
                     </LoadingButton>
                 </TableCell>

@@ -6,6 +6,7 @@ import { Link } from "react-router";
 import requests from "../../api/requests";
 import { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
+import { toast } from "react-toastify";
 
 interface Props{
     product: IProduct
@@ -21,7 +22,9 @@ export default function Product({product}: Props) {
     setLoading(true);
 
     requests.Cart.addItem(productId)
-      .then(cart => setCart(cart))
+      .then(cart =>{ setCart(cart);
+        toast.success("Sepetinize eklendi.");
+      })
       .catch(error => console.log(error))
       .finally(() => setLoading(false));
   }
