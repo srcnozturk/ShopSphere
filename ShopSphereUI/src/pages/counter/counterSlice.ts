@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../store/store";
+
 
 export interface CounterState {
   value: number;
@@ -28,5 +27,3 @@ export const counterSlice = createSlice({
 
 export const { increment, decrement, incrementByAmount } = counterSlice.actions; // Exporting the actions for use in components
 
-export const useAppDispatch= useDispatch.withTypes<AppDispatch>(); // Custom hook to use the dispatch function with TypeScript support
-export const useAppSelector = useSelector.withTypes<RootState>(); // Custom hook to use the selector function with TypeScript support

@@ -1,24 +1,26 @@
 
-import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody,  IconButton, Alert } from "@mui/material";
+import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Alert } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { AddCircleOutline, Delete, RemoveCircleOutline } from "@mui/icons-material";
-import { useCartContext } from "../../context/CartContext";
 import { useState } from "react";
 import requests from "../../api/requests";
 import { toast } from "react-toastify";
 import CartSummary from "./CartSummary";
 import { currentTRY } from "../../utils/formatCurrency";
+import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
+import { setCart } from "./cartSlice";
 
 export default function ShoppingCartPage() 
 {
     
-    const { cart,setCart } =useCartContext();
+   const {cart} = useAppSelector(state => state.cart);
+   const dispatch=useAppDispatch();
     const [status, setStatus] = useState({loading : false, id:""});
 
 function handleAddItem(productId: string,id:string) { 
   setStatus({loading:true, id:id});
     requests.Cart.addItem(productId)
-        .then(cart => setCart(cart))
+        .then(cart => dispatch(setCart(cart)))
         .catch(error => console.log(error))
         .finally(() =>setStatus({loading:false, id:""}));
 }
@@ -26,7 +28,7 @@ function handleAddItem(productId: string,id:string) {
 function handleDeleteItem(productId: string,id:string, quantity: number = 1) {
     setStatus({loading:true, id:id});
     requests.Cart.deleteItem(productId, quantity)
-        .then(cart => setCart(cart))
+        .then(cart => dispatch(setCart(cart)))
         .catch(error => console.log(error))
         .finally(() => setStatus({loading:false, id:""}));
 }

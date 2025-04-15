@@ -5,9 +5,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router";
 import requests from "../../api/requests";
 import { useState } from "react";
-import { useCartContext } from "../../context/CartContext";
 import { toast } from "react-toastify";
 import { currentTRY } from "../../utils/formatCurrency";
+import { useAppDispatch } from "../../hooks/hooks";
+import { setCart } from "../cart/cartSlice";
 
 interface Props{
     product: IProduct
@@ -16,14 +17,15 @@ interface Props{
 export default function Product({product}: Props) {
 
   const [loading, setLoading] = useState(false);
-  const { setCart} = useCartContext();
+     const dispatch=useAppDispatch();
 
   function handleAddItem(productId: string) 
   {
     setLoading(true);
 
     requests.Cart.addItem(productId)
-      .then(cart =>{ setCart(cart);
+      .then(cart =>{
+        dispatch(setCart(cart));
         toast.success("Sepetinize eklendi."); 
       })
       .catch(error => console.log(error))

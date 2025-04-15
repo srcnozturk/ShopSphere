@@ -1,7 +1,7 @@
 import { ShoppingCart } from "@mui/icons-material";
 import { AppBar, Badge, Box, Button,  IconButton,  Stack, Toolbar, Typography } from "@mui/material"
 import { Link, NavLink } from "react-router";
-import { useCartContext } from "../context/CartContext";
+import { useAppSelector } from "../hooks/hooks";
 
 const links = [
   { title: "Anasayfa", to: "/" },
@@ -22,8 +22,7 @@ const navStyles = {
 }
 
 export default function Header(props:any) {
-
-    const {cart} = useCartContext();
+     const { cart } = useAppSelector(state => state.cart); // Using Redux store to get the cart state
 
     const itemCount = cart?.cartItems.reduce((total, item) => total + item.quantity, 0);
 

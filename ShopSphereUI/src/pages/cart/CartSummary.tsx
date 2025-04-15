@@ -1,9 +1,9 @@
 import { TableCell, TableRow } from "@mui/material";
-import { useCartContext } from "../../context/CartContext";
 import { currentTRY } from "../../utils/formatCurrency";
+import { useAppSelector } from "../../hooks/hooks";
 
 export default function CartSummary(){
-const {cart} = useCartContext();
+const {cart} = useAppSelector(state => state.cart); // Using Redux store to get the cart state
 const subTotal = cart?.cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0) ?? 0;
 const tax = subTotal * 0.2; 
 const total = subTotal + tax;
