@@ -83,7 +83,7 @@ public class CartController : ControllerBase
                 ProductId = i.ProductId,
                 Name = i.Product.Name,
                 Price = i.Product.Price,
-                ImageUrl = i.Product.ImageUrl,
+                ImageUrl = i.Product.ImageUrl!,
                 Quantity = i.Quantity
             }).ToList()
         };

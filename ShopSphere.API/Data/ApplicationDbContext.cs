@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using ShopSphere.API.Entitiy;
 
 namespace ShopSphere.API.Data;
 
-public class ApplicationDbContext(DbContextOptions options) : DbContext(options)
+public class ApplicationDbContext(DbContextOptions options) : IdentityDbContext<AppUser, AppRole,string>(options)
 {
     public DbSet<ProductModel> Products => Set<ProductModel>();
     public DbSet<CartModel> Carts => Set<CartModel>();

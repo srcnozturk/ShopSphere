@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ShopSphere.API.Data;
+using ShopSphere.API.Entitiy;
 using ShopSphere.API.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>{
 });
 
 builder.Services.AddCors();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
