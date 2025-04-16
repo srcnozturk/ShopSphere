@@ -2,7 +2,6 @@
 import { TableContainer, Paper, Table, TableHead, TableRow, TableCell, TableBody, Alert } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import { AddCircleOutline, Delete, RemoveCircleOutline } from "@mui/icons-material";
-import { toast } from "react-toastify";
 import CartSummary from "./CartSummary";
 import { currentTRY } from "../../utils/formatCurrency";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";

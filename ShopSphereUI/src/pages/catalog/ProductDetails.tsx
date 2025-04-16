@@ -1,36 +1,29 @@
 import { CircularProgress, Divider, Grid2, Stack, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router";
-import { IProduct } from "../../model/IProduct";
-import requests from "../../api/requests";
 import NotFound from "../../errors/NotFound";
 import { LoadingButton } from "@mui/lab";
 import { AddShoppingCart } from "@mui/icons-material";
 import { currentTRY } from "../../utils/formatCurrency";
 import { useAppDispatch, useAppSelector } from "../../hooks/hooks";
 import { addItemToCart } from "../cart/cartSlice";
+import { fetchProductById, selectProductById } from "./catalogSlice";
 
 export default function ProductDetailsPage() {
+
     const {cart,status} = useAppSelector(state => state.cart);
     const dispatch=useAppDispatch();
-    const {id} = useParams();
-    const [product, setProduct] =useState<IProduct | null>(null);
-    const [loading,setLoading] =useState(true);
+    const {id} = useParams<{id: string}>();
+    const product = useAppSelector(state => selectProductById(state,id));
+    const {status:loading} = useAppSelector(state => state.catalog);
 
 
     const item = cart?.cartItems.find(i => i.productId == product?.id);
     useEffect(() => {
-        id && requests.Catalog.details(id!)
-        .then(data => setProduct(data))
-        .catch(error => console.log(error))
-        .finally(() => setLoading(false));
+        if(!product && id)  dispatch(fetchProductById(id!))
     },[id]);
-
-    function handleAddItem(id: string) {
-       
-    }
-
-    if(loading) return <CircularProgress />;
+ 
+    if(loading === "pendingFetchProductById") return <CircularProgress />;
 
     if(!product) return <NotFound />;
 
