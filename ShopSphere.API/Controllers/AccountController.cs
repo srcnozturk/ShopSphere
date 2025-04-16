@@ -29,8 +29,29 @@ public class AccountController : ControllerBase
         var passwordIsValid = await _userManager.CheckPasswordAsync(user, loginDto.Password);
 
         if (passwordIsValid)
-            return Ok(new { token = "token" }); 
+            return Ok(new { token = "token" });
 
         return Unauthorized();
+    }
+    [HttpPost("register")]
+    public async Task<IActionResult> Register(RegisterDto registerDto)
+    {
+        if(!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        var user = new AppUser
+        {
+            UserName = registerDto.UserName,
+            Email = registerDto.Email,
+            Name = registerDto.Name
+        };
+
+        var result = await _userManager.CreateAsync(user, registerDto.Password);
+        if (result.Succeeded)
+        {
+            await _userManager.AddToRoleAsync(user, "Customer");
+            return StatusCode(201);
+        }
+        return BadRequest(result.Errors);
     }
 }
