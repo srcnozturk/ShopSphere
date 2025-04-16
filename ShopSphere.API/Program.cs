@@ -35,5 +35,5 @@ app.UseCors(opt =>
 app.UseAuthorization();
 app.UseStaticFiles();
 app.MapControllers();
-
+SeedData.Initialize(app);
 app.Run();
