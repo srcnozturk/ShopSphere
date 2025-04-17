@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ShopSphere.API.Data;
 using ShopSphere.API.Dtos;
@@ -15,6 +16,7 @@ public class CartController : ControllerBase
     {
         _context = context;
     }
+    [Authorize]
     [HttpGet]
     public async Task<ActionResult<CartDto>> GetCart()
     {
