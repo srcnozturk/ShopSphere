@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ShopSphere.API.Dtos;
 using ShopSphere.API.Entitiy;
+using ShopSphere.API.Services;
 
 namespace ShopSphere.API.Controllers;
 
@@ -10,10 +11,12 @@ namespace ShopSphere.API.Controllers;
 public class AccountController : ControllerBase
 {
     private readonly UserManager<AppUser> _userManager;
+    private readonly TokenService _tokenService;
 
-    public AccountController(UserManager<AppUser> userManager)
+    public AccountController(UserManager<AppUser> userManager, TokenService tokenService)
     {
         _userManager = userManager;
+        _tokenService = tokenService;
     }
     [HttpPost]
     public async Task<IActionResult> Login(LoginDto loginDto)
@@ -29,7 +32,7 @@ public class AccountController : ControllerBase
         var passwordIsValid = await _userManager.CheckPasswordAsync(user, loginDto.Password);
 
         if (passwordIsValid)
-            return Ok(new { token = "token" });
+            return Ok(new { token =await _tokenService.GenerateToken(user) });
 
         return Unauthorized();
     }

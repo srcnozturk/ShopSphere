@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using ShopSphere.API.Data;
 using ShopSphere.API.Entitiy;
 using ShopSphere.API.Middlewares;
+using ShopSphere.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,7 +30,7 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
-
+builder.Services.AddScoped<TokenService>();
 var app = builder.Build();
 app.UseMiddleware<ExceptionHandling>();
 // Configure the HTTP request pipeline.
