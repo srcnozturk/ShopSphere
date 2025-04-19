@@ -10,6 +10,11 @@ const links = [
   { title: "İletişim", to: "/contact" },
 ]
 
+const authLinks = [
+  { title: "Giriş", to: "/login" },
+  { title: "Kayıt Ol", to: "/register" },
+]
+
 const navStyles = {
   color: "inherit",
   textDecoration: "none",
@@ -44,6 +49,11 @@ export default function Header(props:any) {
                 <ShoppingCart />
                 </Badge>
             </IconButton>
+            <Stack direction="row">
+              { authLinks.map(link => 
+              <Button key={link.to} component={NavLink} sx={navStyles} to={link.to}>{link.title}</Button>  
+           ) }
+           </Stack>
            </Box>
         </Toolbar>
 </AppBar>);
