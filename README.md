@@ -69,22 +69,6 @@ ShopSphere is fully integrated with the Iyzico payment infrastructure and paymen
 - User-friendly interface
 - Cross-browser compatibility
 
-## 🚀 Installation
-
-1. For Backend:
-```bash
-cd ShopSphere.API
-dotnet restore
-dotnet run
-```
-
-2. For Frontend:
-```bash
-cd ShopSphereUI
-npm install
-npm run dev
-```
-
 ## 📱 Responsive Design
 
 - Mobile-first design approach
@@ -92,15 +76,6 @@ npm run dev
 - Optimized for touch devices
 - Fluid layouts and flexible images
 - Adaptive navigation menus
-
-## 🔒 Security
-
-- SSL certificate implementation
-- Secure payment gateway integration
-- GDPR compliant data handling
-- Protected API endpoints
-- Input validation and sanitization
-- XSS and CSRF protection
 
 ## ⚡ Performance
 
@@ -110,28 +85,3 @@ npm run dev
 - Minified assets
 - Caching strategies
 - Fast page load times
-
-## 📞 Contact
-
-For questions and suggestions:
-- 📧 Email: info@shopsphere.com
-- 📱 Phone: +90 (212) 123 45 67
-- 📍 Address: Ataturk Street No:123, Kadikoy, Istanbul
-
-## 🤝 Contributing
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## License
-
-This project is licensed under the MIT License - see the `LICENSE.txt` file for details.
-
-## Acknowledgments
-
-- Material-UI for the amazing component library
-- React.js community for continuous support
-- All contributors who have helped with the project 
